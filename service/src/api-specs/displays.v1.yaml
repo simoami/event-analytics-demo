@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  title: Event Analytics Service
+  version: '1.0'
+  contact:
+    name: Simo Moujami
+    email: simo@webinventinc.com
+  description: API to log and query user interactions events with products on display
+servers:
+  - url: 'http://localhost:8080/api'
+    description: localhost
+paths:
+  '/v1/displays/{displayId}/events':
+    post:
+      summary: Log Events
+      tags:
+        - events
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                success-example:
+                  value:
+                    success: true
+                error-example:
+                  value:
+                    success: false
+                    error: invalid event
+      operationId: postEvent
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: x-client-id
+        - schema:
+            type: string
+          in: header
+          name: x-location-id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+            examples:
+              example:
+                value:
+                  productId: '123'
+                  productName: Spider Man
+                  event: pickup
+                  timestamp: '2020-06-29T10:00:00.000Z'
+      description: Log a customer interaction event
+    parameters:
+      - schema:
+          type: string
+        name: displayId
+        in: path
+        required: true
+    get:
+      summary: Get Events
+      operationId: getEvents
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  events:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+      description: List customer interaction events
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: from
+          required: true
+          description: start date time of query in full iso format
+        - schema:
+            type: string
+          in: query
+          name: to
+          description: end date time of query in full iso format
+        - schema:
+            type: string
+          in: query
+          name: productId
+          description: the product id to filter the list to
+        - schema:
+            type: string
+          in: query
+          name: events
+          description: 'comma separated string of event types to filter by. possible values: pickup, screentouch,putdown '
+components:
+  schemas:
+    Event:
+      title: Event
+      type: object
+      description: An event for a customer interaction with a product on display
+      x-examples:
+        example:
+          productId: '123'
+          productName: Spider Man
+          event: pickup
+          timestamp: '2020-06-29T10:00:00.000Z'
+      properties:
+        productId:
+          type: string
+          description: the product id
+        productName:
+          type: string
+          description: the product name
+        type:
+          type: string
+          enum:
+            - pickup
+            - putdown
+            - screentouch
+          description: the event type
+        target:
+          type: string
+          description: an optional target item specific to screen touch events
+        timestamp:
+          type: string
+          description: The date and time of the event in iso format
+        id:
+          type: string
+      required:
+        - productId
+        - productName
+        - type

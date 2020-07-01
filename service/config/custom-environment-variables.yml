@@ -1,0 +1,8 @@
+host: HOST
+port: PORT
+services:
+  redis:
+    host: REDIS_HOST
+    port: REDIS_PORT
+    password: REDIS_PASSWORD
+    timeout: REDIS_TIMEOUT

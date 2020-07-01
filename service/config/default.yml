@@ -1,0 +1,8 @@
+host: 0.0.0.0
+port: 8080
+restApiRoot: /api
+services:
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 5000

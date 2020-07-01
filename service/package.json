@@ -1,0 +1,48 @@
+{
+  "name": "service",
+  "version": "1.0.0",
+  "description": "sample service",
+  "main": "build/src/app.js",
+  "author": "Simo Moujami",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "yarn run copy-files && ts-node-dev --respawn --debug --transpileOnly --watch ./src ./src/app.ts",
+    "build": "rimraf build/ && tsc",
+    "postbuild": "yarn run copy-files",
+    "start": "node build/src/app.js",
+    "copy-files": "copyfiles -V package.json src/*.json src/**/*.yaml config/** src/assets/** ./build",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "NODE_ENV= jest"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "devDependencies": {
+    "@types/config": "^0.0.36",
+    "@types/jest": "^26.0.3",
+    "@types/node": "^14.0.14",
+    "copyfiles": "^2.3.0",
+    "eslint": "^7.3.1",
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.1.1",
+    "ts-node": "^8.10.2",
+    "ts-node-dev": "^1.0.0-pre.49",
+    "typescript": "^3.9.5"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "config": "^3.3.1",
+    "fastify": "^2.15.0",
+    "fastify-helmet": "^3.0.2",
+    "fastify-openapi-glue": "^1.6.0",
+    "fastify-sensible": "^2.1.1",
+    "fastify-static": "^2.7.0",
+    "fastify-swagger": "^2.6.0",
+    "ioredis": "^4.17.3",
+    "moment": "^2.27.0"
+  }
+}

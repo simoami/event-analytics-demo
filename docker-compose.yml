@@ -1,0 +1,23 @@
+version: '3'
+# networks:
+#   net-redis:
+services:
+  web:
+    build: service/.
+    # networks:
+    #   - net-redis
+    ports:
+      - "8080:8080"
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+
+  redis:
+    image: "redis:alpine"
+    command: ["redis-server", "--bind", "redis", "--port", "6379"]
+    ports:
+      - "6379:6379"
+    # networks:
+    #   - net-redis
+
+

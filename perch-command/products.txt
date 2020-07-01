@@ -1,0 +1,14 @@
+100,Hulk
+101,Captain America
+102,Ant-Man
+103,Black Panther
+104,Black Widow
+105,Captain Marvel
+106,Doctor Strange
+107,Falcon
+108,Hawkeye
+109,Iron Man
+110,Loki
+111,Nick Fury
+112,Spider-Man
+113,Thor
