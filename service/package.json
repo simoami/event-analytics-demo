@@ -40,7 +40,7 @@
     "fastify-helmet": "^3.0.2",
     "fastify-openapi-glue": "^1.6.0",
     "fastify-sensible": "^2.1.1",
-    "fastify-static": "^2.7.0",
+    "fastify-static": "^4.2.4",
     "fastify-swagger": "^2.6.0",
     "ioredis": "^4.17.3",
     "moment": "^2.27.0"
