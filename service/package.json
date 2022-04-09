@@ -43,6 +43,6 @@
     "fastify-static": "^2.7.0",
     "fastify-swagger": "^2.6.0",
     "ioredis": "^4.17.3",
-    "moment": "^2.27.0"
+    "moment": "^2.29.2"
   }
 }
