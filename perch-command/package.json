@@ -13,7 +13,7 @@
     "@oclif/plugin-help": "^3",
     "async-file": "^2.0.2",
     "got": "^11.3.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "ora": "^4.0.4",
     "tslib": "^1"
   },
